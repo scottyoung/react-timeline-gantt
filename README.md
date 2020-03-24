@@ -6,13 +6,16 @@
 [![Travis](https://travis-ci.org/guiqui/react-timeline-gantt.svg?branch=master)](https://travis-ci.org/guiqui/react-timeline-gantt)
 [![codecov](https://codecov.io/gh/guiqui/react-timeline-gantt/branch/master/graph/badge.svg)](https://codecov.io/gh/guiqui/react-timeline-gantt)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/9149e301e65b44cebf2e7b49316aee10)](https://www.codacy.com/app/gquiman/react-timeline-gantt?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=guiqui/react-timeline-gantt&amp;utm_campaign=Badge_Grade)
-[![Backers on Open Collective](https://opencollective.com/react-timeline-gantt/backers/badge.svg)](#backers) [![Sponsors on Open Collective](https://opencollective.com/react-timeline-gantt/sponsors/badge.svg)](#sponsors) 
+[![Backers on Open Collective](https://opencollective.com/react-timeline-gantt/backers/badge.svg)](#backers) [![Sponsors on Open Collective](https://opencollective.com/react-timeline-gantt/sponsors/badge.svg)](#sponsors)
 [![downloads](https://img.shields.io/npm/dt/react-gantt-timeline.svg?maxAge=2592000)](https://www.npmjs.com/package/react-gantt-timeline)
 
 
 A react timeline gantt component.
 
 ![screencast](https://guiqui.github.io/react-timeline-gantt/demo.gif)
+
+## News
+3/24/20 We will attempt to fork this and make some proprietary changes
 
 ## About
 React-timeline-gantt is a component built to display and manage calendar gantt charts.
@@ -30,9 +33,9 @@ The component is capable of:
 
 
  To watch a demo take a look at [video](https://youtu.be/ASGD1FXOafw) that shows how to use the component.
- 
+
  To play with a live [demo](https://guiqui.github.io/react-timeline-gantt/index.html) .
- 
+
  ## Golden Sponsor
  [![alt text](https://guiqui.github.io/react-timeline-gantt/K8Stu.png)](https://www.uxxu.io)
 
@@ -104,10 +107,10 @@ The TimeLine component is responsible for  two things:
 
  - Updating task:Changing name ,start and end date
  - Creating Links
- 
+
 Adding,Deleting Task or links can be manage with logic outside the component.
 For this reason  the react-timeline-gantt component provides the following callbacks:
- 
+
 
 | name      | params   | Descriptions                        |
 | ------------- |:-------:| -----------------------------------:|
@@ -122,7 +125,7 @@ Here is a simple demo of how to handle updates task and link creation:
  - When you drag a task or resize an update will be triggered.
  - You can create a task by clicking in the black dot at the end of a task and drag and drop it to the beginning of another task.A demo of how it works can be seen  [here](https://youtu.be/ASGD1FXOafw)
 
-Here is a full crud example: This demo illustrate how to do a simple application  
+Here is a full crud example: This demo illustrate how to do a simple application
 
 [![Edit 3x8nl16p65](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/3x8nl16p65)
 
@@ -155,8 +158,8 @@ Here is the structure of the config object  :
 			style:{backgroundColor:"chocolate"}, //The style applied to the day of week elements
 			selectedStyle:{backgroundColor:"#b13525"}//The style applied to the day of week elements when is selected
 		},
-		bottom:{//Tartget elements displaying the day number or time 
-			style:{background:"grey",fontSize:9},//the style tp be applied 
+		bottom:{//Tartget elements displaying the day number or time
+			style:{background:"grey",fontSize:9},//the style tp be applied
 			selectedStyle:{backgroundColor:"#b13525",fontWeight:  'bold'}//the style tp be applied  when selected
 		}
 	},
@@ -208,7 +211,7 @@ Here is a demo:
 
 [![Edit 2w93lvmqv0](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/2w93lvmqv0)
 
-## Other properties 
+## Other properties
 | Property      | value   | Descriptions                        |
 | ------------- |:-------:| -----------------------------------:|
 | mode          | string    |set the zoom level.The possible values are:"month","week","day","year"  |   |
@@ -217,7 +220,7 @@ Here is a demo:
 
 ## Contributors
 
-This project exists thanks to all the people who contribute. 
+This project exists thanks to all the people who contribute.
 <a href="https://github.com/guiqui/react-timeline-gantt/contributors"><img src="https://opencollective.com/react-timeline-gantt/contributors.svg?width=890&button=false" /></a>
 
 
