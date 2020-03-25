@@ -183,7 +183,7 @@ class App extends Component {
     return (
       <div className="app-container">
         <div className="nav-container">
-          <div className="mode-container-title">Full Demo</div>
+          <div className="mode-container-title">Full Demo1</div>
           <div className="operation-button-container">
             <div className="operation-button-container">
               <div className="mode-button" onClick={this.addTask}>

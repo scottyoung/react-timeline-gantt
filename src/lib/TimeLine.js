@@ -75,6 +75,7 @@ class TimeLine extends Component {
 
   onSize = (size) => {
     //If size has changed
+
     this.calculateVerticalScrollVariables(size);
     if (!this.initialise) {
       this.dc.initialise(
@@ -315,6 +316,16 @@ class TimeLine extends Component {
       Registry.registerLinks(this.props.links);
     }
   };
+  buttonScrollRightClicked = () => {
+    const currScroll = this.state.scrollLeft;
+    this.setState({scrollLeft: currScroll + 75});
+    this.horizontalChange(currScroll + 75);
+  }
+  buttonScrollLeftClicked = () => {
+    const currScroll = this.state.scrollLeft;
+    this.setState({scrollLeft: currScroll - 75});
+    this.horizontalChange(currScroll - 75);
+  }
   render() {
     this.checkMode();
     this.checkNeeeData();
@@ -325,6 +336,7 @@ class TimeLine extends Component {
     return (
       <div className="timeLine">
         <div className="timeLine-side-main" style={this.state.sideStyle}>
+
           <TaskList
             ref="taskViewPort"
             itemheight={this.props.itemheight}
@@ -339,6 +351,10 @@ class TimeLine extends Component {
           />
           <VerticalSpliter onTaskListSizing={this.onTaskListSizing} />
         </div>
+        <button style={{cursor:'pointer'}} onClick={this.buttonScrollLeftClicked}>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M16.67 0l2.83 2.829-9.339 9.175 9.339 9.167-2.83 2.829-12.17-11.996z"/>
+          </svg>
+        </button>
         <div className="timeLine-main">
           <Header
             headerData={this.state.headerData}
@@ -399,6 +415,10 @@ class TimeLine extends Component {
             links={this.props.links}
           />
         </div>
+        <button style={{cursor:'pointer'}} onClick={this.buttonScrollRightClicked}>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M7.33 24l-2.83-2.829 9.339-9.175-9.339-9.167 2.83-2.829 12.17 11.996z"/>
+          </svg>
+        </button>
       </div>
     );
   }
