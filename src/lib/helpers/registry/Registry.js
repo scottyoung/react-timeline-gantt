@@ -9,10 +9,15 @@ class Registry{
         if (!list)
             return;
         this.data={}
-        for (let i=0;i<list.length;i++){
-            this.data[list[i].id]={item:list[i],index:i};
-        }
+
+        const groups = this.groupData(list, 0, list.length);
+        Object.values(groups).forEach((group, i) => {
+            group.forEach(item => {
+                this.data[item.id] = { item, index: i };
+            });
+        });
     }
+
     registerLinks(list){
         if(!list)
             return
@@ -40,6 +45,21 @@ class Registry{
     }
     getLinks(id){
         return this.link[id]
+    }
+
+    groupData(list, startIndex, endIndex) {
+        const groups = {};
+        for (let i = startIndex; i < endIndex; i++) {
+            let item = list[i];
+            if (!item) break;
+            const key = item.groupName !== undefined ? item.groupName : item.id;
+            if (groups[key] !== undefined) {
+                groups[key].push(item);
+            } else {
+                groups[key] = [item];
+            }
+        }
+        return groups;
     }
 
 }

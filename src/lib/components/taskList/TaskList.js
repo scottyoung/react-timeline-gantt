@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Config from 'libs/helpers/config/Config';
 import ContentEditable from 'libs/components/common/ContentEditable';
+import Registry from 'libs/helpers/registry/Registry';
 
 export class VerticalLine extends Component {
   constructor(props) {
@@ -58,24 +59,27 @@ export default class TaskList extends Component {
 
   renderTaskRow(data) {
     let result = [];
-    for (let i = this.props.startRow; i < this.props.endRow + 1; i++) {
-      let item = data[i];
-      if (!item) break;
-      result.push(
-        <TaskRow
-          key={i}
-          index={i}
-          item={item}
-          label={item.name}
-          top={i * this.props.itemheight}
-          itemheight={this.props.itemheight}
-          isSelected={this.props.selectedItem == item}
-          onUpdateTask={this.props.onUpdateTask}
-          onSelectItem={this.props.onSelectItem}
-          nonEditable={this.props.nonEditable}
-        />
-      );
-    }
+    const groups = Registry.groupData(data, this.props.startRow, this.props.endRow + 1);
+    console.log(groups);
+    Object.keys(groups).forEach((key, i) => {
+      const group = groups[key];
+      group.forEach(item => {
+        result.push(
+          <TaskRow
+            key={i + item.id}
+            index={item.name + i}
+            item={item}
+            label={item.groupName ? key : item.name}
+            top={i * this.props.itemheight}
+            itemheight={this.props.itemheight}
+            isSelected={this.props.selectedItem == item}
+            onUpdateTask={this.props.onUpdateTask}
+            onSelectItem={this.props.onSelectItem}
+            nonEditable={this.props.nonEditable}
+          />
+        );
+      });
+    });
     return result;
   }
 

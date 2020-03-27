@@ -86,6 +86,27 @@ class App extends Component {
       links: result.links,
       nonEditableName: false
     };
+
+    let d1 = new Date();
+    let d2 = new Date();
+    d2.setDate(d2.getDate() + 5);
+    let d3 = new Date();
+    d3.setDate(d3.getDate() + 8);
+    let d4 = new Date();
+    d4.setDate(d4.getDate() + 20);
+    let d5 = new Date();
+    d5.setDate(d5.getDate() + 100);
+    this.data = [
+      { id: 1, start: d1, end: d5, name: 'Demo Task 1', color: 'red'},
+      {
+        id: 2,
+        start: d3,
+        end: d4,
+        name: 'Demo Task 2',
+        groupName: 'Group 2'
+      }
+    ];
+    this.links = [{ id: 1, start: 1, end: 2 }];
   }
 
   handleDayWidth = (e) => {
@@ -237,7 +258,7 @@ class App extends Component {
         </div>
         <div className="time-line-container">
           <TimeLine
-            // config={config}
+            config={config}
             data={this.state.data}
             links={this.state.links}
             onHorizonChange={this.onHorizonChange}
