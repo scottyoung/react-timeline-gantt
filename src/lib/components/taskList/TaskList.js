@@ -60,7 +60,6 @@ export default class TaskList extends Component {
   renderTaskRow(data) {
     let result = [];
     const groups = Registry.groupData(data, this.props.startRow, this.props.endRow + 1);
-    console.log(groups);
     Object.keys(groups).forEach((key, i) => {
       const group = groups[key];
       group.forEach(item => {

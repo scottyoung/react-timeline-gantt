@@ -88,8 +88,9 @@ class App extends Component {
     };
 
     let d1 = new Date();
+    d1.setDate(d1.getDate() + 20);
     let d2 = new Date();
-    d2.setDate(d2.getDate() + 5);
+    d2.setDate(d2.getDate() + 35);
     let d3 = new Date();
     d3.setDate(d3.getDate() + 8);
     let d4 = new Date();
@@ -97,7 +98,7 @@ class App extends Component {
     let d5 = new Date();
     d5.setDate(d5.getDate() + 100);
     this.data = [
-      { id: 1, start: d1, end: d5, name: 'Demo Task 1', color: 'red'},
+      { id: 1, start: d1, end: d2, name: 'Demo Task 1'},
       {
         id: 2,
         start: d3,

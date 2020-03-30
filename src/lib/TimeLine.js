@@ -13,6 +13,7 @@ import DataController from 'libs/controller/DataController';
 import Config from 'libs/helpers/config/Config';
 import DateHelper from 'libs/helpers/DateHelper';
 import './TimeLine.css';
+import moment from 'moment';
 
 class TimeLine extends Component {
   constructor(props) {
@@ -46,7 +47,8 @@ class TimeLine extends Component {
       links: [],
       mode: this.props.mode ? this.props.mode : VIEW_MODE_MONTH,
       size: { width: 1, height: 1 },
-      changingTask: null
+      changingTask: null,
+      shouldSetCustomStartDate: true,
     };
   }
 
@@ -141,13 +143,7 @@ class TimeLine extends Component {
       new_nowposition = this.state.nowposition - this.pxToScroll;
       new_left = 0;
     } else {
-      if (newScrollLeft <= 0) {
-        //ContenLegnth-viewportLengt
-        new_nowposition = this.state.nowposition + this.pxToScroll;
-        new_left = this.pxToScroll;
-      } else {
         new_left = newScrollLeft;
-      }
     }
 
     //Get the day of the left position
@@ -165,7 +161,7 @@ class TimeLine extends Component {
     this.setState(
        {
         currentday: currentIndx,
-        nowposition: new_nowposition,
+        nowposition: newScrollLeft < 0 ? -newScrollLeft : new_nowposition,
         headerData: headerData,
         scrollLeft: new_left,
         startRow: new_startRow,
@@ -318,21 +314,33 @@ class TimeLine extends Component {
   };
   buttonScrollRightClicked = () => {
     const currScroll = this.state.scrollLeft;
-    this.setState({scrollLeft: currScroll + 75});
-    this.horizontalChange(currScroll + 75);
+    this.setState({scrollLeft: currScroll + 100});
+    this.horizontalChange(currScroll + 100);
   }
   buttonScrollLeftClicked = () => {
     const currScroll = this.state.scrollLeft;
-    this.setState({scrollLeft: currScroll - 75});
-    this.horizontalChange(currScroll - 75);
+    this.setState({scrollLeft: currScroll - 100});
+    this.horizontalChange(currScroll - 100);
   }
   render() {
     this.checkMode();
     this.checkNeeeData();
     console.log('On render')
+    this.setStartEnd();
     if(!this.state.size){
       console.log(this.state)
     }
+
+    // Set start date of chart to start date of first data entry
+    if (this.props.data.length > 0 && this.state.shouldSetCustomStartDate) {
+      const diff = moment(this.props.data[0].start).diff(moment(), 'days');
+      // calculate how many days before or after today the first date is
+      this.setState({
+        shouldSetCustomStartDate: false,
+      });
+      this.horizontalChange(diff * this.state.dayWidth);
+    }
+
     return (
       <div className="timeLine">
         <div className="timeLine-side-main" style={this.state.sideStyle}>
