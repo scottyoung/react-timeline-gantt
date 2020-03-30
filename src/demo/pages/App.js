@@ -260,9 +260,9 @@ class App extends Component {
         <div className="time-line-container">
           <TimeLine
             config={config}
-            data={this.state.data}
+            data={this.data}
             links={this.state.links}
-            onHorizonChange={this.onHorizonChange}
+            //onHorizonChange={this.onHorizonChange}
             onSelectItem={this.onSelectItem}
             onUpdateTask={this.onUpdateTask}
             onCreateLink={this.onCreateLink}

@@ -130,7 +130,7 @@ class TimeLine extends Component {
     this.dc.setStartEnd(this.state.scrollLeft, this.state.scrollLeft + this.state.size.width, this.state.nowposition, this.state.dayWidth);
   };
 
-  horizontalChange = (newScrollLeft) => {
+  horizontalChange = (newScrollLeft, override=false) => {
     let new_nowposition = this.state.nowposition;
     let new_left = -1;
     let headerData = this.state.headerData;
@@ -143,7 +143,13 @@ class TimeLine extends Component {
       new_nowposition = this.state.nowposition - this.pxToScroll;
       new_left = 0;
     } else {
+      if (newScrollLeft <= 0 && !override) {
+        //ContenLegnth-viewportLengt
+        new_nowposition = this.state.nowposition + this.pxToScroll;
+        new_left = this.pxToScroll;
+      } else {
         new_left = newScrollLeft;
+      }
     }
 
     //Get the day of the left position
@@ -161,7 +167,7 @@ class TimeLine extends Component {
     this.setState(
        {
         currentday: currentIndx,
-        nowposition: newScrollLeft < 0 ? -newScrollLeft : new_nowposition,
+        nowposition: new_nowposition,
         headerData: headerData,
         scrollLeft: new_left,
         startRow: new_startRow,
@@ -338,7 +344,7 @@ class TimeLine extends Component {
       this.setState({
         shouldSetCustomStartDate: false,
       });
-      this.horizontalChange(diff * this.state.dayWidth);
+      this.horizontalChange(diff * this.state.dayWidth, true);
     }
 
     return (
