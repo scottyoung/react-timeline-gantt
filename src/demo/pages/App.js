@@ -88,7 +88,7 @@ class App extends Component {
     };
 
     let d1 = new Date();
-    d1.setDate(d1.getDate() + 20);
+    d1.setDate(d1.getDate() - 100);
     let d2 = new Date();
     d2.setDate(d2.getDate() + 35);
     let d3 = new Date();

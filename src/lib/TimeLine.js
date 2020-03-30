@@ -48,7 +48,6 @@ class TimeLine extends Component {
       mode: this.props.mode ? this.props.mode : VIEW_MODE_MONTH,
       size: { width: 1, height: 1 },
       changingTask: null,
-      shouldSetCustomStartDate: true,
     };
   }
 
@@ -130,7 +129,7 @@ class TimeLine extends Component {
     this.dc.setStartEnd(this.state.scrollLeft, this.state.scrollLeft + this.state.size.width, this.state.nowposition, this.state.dayWidth);
   };
 
-  horizontalChange = (newScrollLeft, override=false) => {
+  horizontalChange = (newScrollLeft) => {
     let new_nowposition = this.state.nowposition;
     let new_left = -1;
     let headerData = this.state.headerData;
@@ -143,7 +142,7 @@ class TimeLine extends Component {
       new_nowposition = this.state.nowposition - this.pxToScroll;
       new_left = 0;
     } else {
-      if (newScrollLeft <= 0 && !override) {
+      if (newScrollLeft <= 0) {
         //ContenLegnth-viewportLengt
         new_nowposition = this.state.nowposition + this.pxToScroll;
         new_left = this.pxToScroll;
@@ -332,19 +331,8 @@ class TimeLine extends Component {
     this.checkMode();
     this.checkNeeeData();
     console.log('On render')
-    this.setStartEnd();
     if(!this.state.size){
       console.log(this.state)
-    }
-
-    // Set start date of chart to start date of first data entry
-    if (this.props.data.length > 0 && this.state.shouldSetCustomStartDate) {
-      const diff = moment(this.props.data[0].start).diff(moment(), 'days');
-      // calculate how many days before or after today the first date is
-      this.setState({
-        shouldSetCustomStartDate: false,
-      });
-      this.horizontalChange(diff * this.state.dayWidth, true);
     }
 
     return (
