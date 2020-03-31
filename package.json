@@ -1,6 +1,6 @@
 {
-  "name": "react-gantt-timeline",
-  "version": "0.4.3",
+  "name": "react-gantt-timeline-with-groups",
+  "version": "0.1.0",
   "description": "",
   "main": "dist/index.js",
   "scripts": {
